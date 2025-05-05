@@ -1,0 +1,16 @@
+import "Entities/AttributePair.idl";
+
+namespace media_foundation_explorer
+{
+    [bindable]
+    [default_interface]
+    runtimeclass MftDesc
+    {
+        MftDesc(String name, Boolean CanBeActivated, Boolean SupportOutput);
+		Boolean CanBeActivated;
+		String Name;
+		Boolean SupportOutput; 
+		
+        Windows.Foundation.Collections.IObservableVector<media_foundation_explorer.AttributePair> Attributes { get; };
+	}
+}

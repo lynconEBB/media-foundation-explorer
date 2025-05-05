@@ -1,0 +1,11 @@
+namespace media_foundation_explorer
+{
+    [bindable]
+    [default_interface]
+    runtimeclass AttributePair 
+    {
+        AttributePair();
+        String Key;
+        String Value;
+    }
+}

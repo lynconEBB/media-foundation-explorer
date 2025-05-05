@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="media_foundation_explorer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:media_foundation_explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:collections="using:Windows.Foundation.Collections"
+    mc:Ignorable="d">
+
+    <StackPanel>
+        <TextBlock FontSize="30"
+                   Margin="20"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Media Foundation Tools"
+                   VerticalAlignment="Center" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox Header="Input" Margin="10"
+                      PlaceholderText="Choose a input media type"
+                      Width="300" x:Name="InputField">
+                <x:String>NV12</x:String>
+                <x:String>YUY12</x:String>
+            </ComboBox>
+            <ComboBox Header="Output"
+                      Margin="10"
+                      PlaceholderText="Choose a output media type"
+                      Width="300" x:Name="OutputField">
+                <x:String>H264</x:String>
+                <x:String>MPGE</x:String>
+                <x:String>H265</x:String>
+            </ComboBox>
+            <CheckBox Content="Hardware"
+                      Margin="10"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Center" />
+        </StackPanel>
+        <Button HorizontalAlignment="Center"
+                x:Name="SearchButton"
+                Click="HandleSearchButtonClick"
+                Width="300"
+                Margin="10"
+                Style="{StaticResource AccentButtonStyle}"
+                CornerRadius="10"
+                Content="Search" />
+
+        <ListView ItemsSource="{x:Bind MftList}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:MftDesc">
+                    <Grid Padding="8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Row 0 -->
+                        <TextBlock Text="Name:" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,8,0" />
+                        <TextBlock Text="{x:Bind Name}" Grid.Row="0" Grid.Column="1" />
+
+                        <!-- Row 1 -->
+                        <TextBlock Text="CanBeActivated:" FontWeight="Bold" Grid.Row="1" Grid.Column="0"
+                                   Margin="0,0,8,0" />
+                        <TextBlock Text="{x:Bind CanBeActivated}" Grid.Row="1" Grid.Column="1" />
+
+                        <!-- Row 2 -->
+                        <TextBlock Text="SupportOutput:" FontWeight="Bold" Grid.Row="2" Grid.Column="0"
+                                   Margin="0,0,8,0" />
+                        <TextBlock Text="{x:Bind SupportOutput}" Grid.Row="2" Grid.Column="1" />
+                        
+                        <ListView 
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{x:Bind Attributes, Mode=OneWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="local:AttributePair">
+                                    <Grid Padding="8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{x:Bind Key}" FontWeight="Bold"/>
+                                        <TextBlock Grid.Column="1" Text="{x:Bind Value}" TextWrapping="Wrap"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Page>

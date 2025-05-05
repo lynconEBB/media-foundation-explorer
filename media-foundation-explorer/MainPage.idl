@@ -1,0 +1,12 @@
+import "Entities/MftDesc.idl";
+
+namespace media_foundation_explorer
+{
+    [default_interface]
+    runtimeclass MainPage : Windows.UI.Xaml.Controls.Page
+    {
+        MainPage();
+        
+        Windows.Foundation.Collections.IObservableVector<media_foundation_explorer.MftDesc> MftList { get; };
+    }
+}
