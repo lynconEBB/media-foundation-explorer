@@ -120,8 +120,6 @@
       <DependentUpon>Entities\MftDesc.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="MFT.h" />
-    <ClInclude Include="MFTDescriptor.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.h">
       <DependentUpon>App.xaml</DependentUpon>
